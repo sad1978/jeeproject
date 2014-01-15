@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import es.microforum.model.Empleado;
-import es.microforum.model.Persona;
+
 
 /**
  * @author Clarence

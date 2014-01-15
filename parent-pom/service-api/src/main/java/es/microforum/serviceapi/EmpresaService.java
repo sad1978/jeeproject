@@ -5,7 +5,8 @@ package es.microforum.serviceapi;
 
 import java.util.List;
 
-import es.microforum.model.Persona;
+import es.microforum.model.Empresa;
+
 
 /**
  * @author Clarence
@@ -14,29 +15,15 @@ import es.microforum.model.Persona;
 public interface EmpresaService {
 
 	// Find all contacts
-	public List<Persona> findAll();
-	
-	// Find all contacts with telephone and hobbies	
-	//public List<Contact> findAllWithDetail();
+	public List<Empresa> findAll();
 	
 	// Find a contact with details by id
-	public Persona findById(int id);
+	public Empresa findById(int id);
 	
 	// Insert or update a contact	
-	public Persona save(Persona persona);
+	public Empresa save(Empresa empresa);
 	
 	// Delete a contact	
-	public void delete(Persona persona);
+	public void delete(Empresa empresa);
 	
-	// Find all contacts by native query
-	//public List<Contact> findAllByNativeQuery();
-	
-	// Find contacts by criteria query
-	//public List<Contact> findByCriteriaQuery(String firstName, String lastName);
-	
-	// Find contacts by first name
-	//public List<Persona> findByNombreAndSalario(String nombre, int salario);
-	
-	// Find contacts by first name and last name
-	//public List<Contact> findByFirstNameAndLastName(String firstName, String lastName);	
 }

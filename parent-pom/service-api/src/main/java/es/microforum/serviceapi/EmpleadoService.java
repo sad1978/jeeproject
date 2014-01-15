@@ -3,7 +3,6 @@ package es.microforum.serviceapi;
 import java.util.List;
 
 import es.microforum.model.Empleado;
-import es.microforum.model.Persona;
 
 public interface EmpleadoService {
 

@@ -18,9 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.microforum.model.Empleado;
-import es.microforum.model.Persona;
 import es.microforum.serviceapi.EmpleadoService;
-import es.microforum.serviceapi.PersonaService;
+
 
 
 

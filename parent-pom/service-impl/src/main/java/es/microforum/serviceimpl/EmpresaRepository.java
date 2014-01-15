@@ -7,16 +7,14 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import es.microforum.model.Persona;
+import es.microforum.model.Empresa;
+
+
 
 /**
  * @author Clarence
  *
  */
-public interface EmpresaRepository extends CrudRepository<Persona, Integer> {
+public interface EmpresaRepository extends CrudRepository<Empresa, Integer> {
 
-	public List<Persona> findByNombreAndSalario(String nombre,int salario);
-	
-	//public List<Persona> findByFirstNameAndLastName(String firstName, String lastName);	
-	
 }

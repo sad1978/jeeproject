@@ -15,7 +15,6 @@ import es.microforum.model.Empleado;
  *
  */
 public interface EmpleadoRepository extends CrudRepository<Empleado, String> {
-
 	//public List<Persona> findByNombreAndSalario(String nombre,int salario);
 	
 	//public List<Persona> findByFirstNameAndLastName(String firstName, String lastName);	

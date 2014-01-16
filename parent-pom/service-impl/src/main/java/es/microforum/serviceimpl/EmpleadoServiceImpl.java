@@ -13,6 +13,8 @@ import javax.persistence.criteria.Root;
 
 
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,9 @@ import es.microforum.serviceapi.EmpleadoService;
 @Repository
 @Transactional
 public class EmpleadoServiceImpl implements EmpleadoService {
-
+	@Autowired
+	private EmpleadoRepository repositorioEmpleado;
+	
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -41,9 +45,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
 	@Transactional(readOnly=true)
 	public Empleado findById(String id) {
-		TypedQuery<Empleado> query = em.createNamedQuery("Empleado.findById", Empleado.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
+		//TypedQuery<Empleado> query = em.createNamedQuery("Empleado.findById", Empleado.class);
+		//query.setParameter("id", id);
+		//return query.getSingleResult();
+		return repositorioEmpleado.findOne(id);
+
 	}
 
 	public Empleado save(Empleado empleado) {

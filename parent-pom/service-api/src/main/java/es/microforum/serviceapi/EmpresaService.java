@@ -7,21 +7,19 @@ import java.util.List;
 
 import es.microforum.model.Empresa;
 
-
-/**
- * @author Clarence
- *
- */
 public interface EmpresaService {
 
-	// Find all contacts
+	// Busca todas las empresas
 	public List<Empresa> findAll();
 	
-	// Find a contact with details by id
-	public Empresa findById(int id);
+	// Busca una empresa por clave primaria
+	public Empresa findById(String id);
 	
-	// Insert or update a contact	
-	public Empresa save(Empresa empresa);
+	// Introduce una empresa
+	public Empresa insert(Empresa empresa);
+	
+	//Modifica una empresa
+	public Empresa update(Empresa empresa);
 	
 	// Delete a contact	
 	public void delete(Empresa empresa);

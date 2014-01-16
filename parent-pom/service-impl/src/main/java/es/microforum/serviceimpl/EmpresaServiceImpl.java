@@ -48,7 +48,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}
 
 	@Transactional(readOnly=true)
-	public Empresa findById(int id) {
+	public Empresa findById(String id) {
 		TypedQuery<Empresa> query = em.createNamedQuery("Empresa.findById",Empresa.class);
 		query.setParameter("id", id);
 		return query.getSingleResult();
@@ -62,7 +62,12 @@ public class EmpresaServiceImpl implements EmpresaService {
 		}
 		return empresa;
 	}
-
+	public Empresa update(Empresa empresa){
+		return null;
+	}
+	public Empresa insert(Empresa empresa){
+		return null;
+	}
 	public void delete(Empresa empresa) {
 		Empresa mergedEmpresa = em.merge(empresa);
 		em.remove(mergedEmpresa);

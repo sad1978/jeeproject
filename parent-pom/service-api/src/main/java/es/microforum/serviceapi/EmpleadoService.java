@@ -6,16 +6,19 @@ import es.microforum.model.Empleado;
 
 public interface EmpleadoService {
 
-	// Find all contacts
+	// Busca todos los contactos
 	public List<Empleado> findAll();
 	
-	// Find a contact with details by id
+	// Busca un contacto por clave primaria
 	public Empleado findById(String id);
 	
-	// Insert or update a contact	
-	public Empleado save(Empleado empleado);
+	// Inserta un contacto
+	public Empleado insert(Empleado empleado);
 	
-	// Delete a contact	
+	// Modifica un contacto
+	public Empleado update(Empleado empleado);
+	
+	// Borra un contacto	
 	public void delete(Empleado empleado);
 	
 }

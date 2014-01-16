@@ -22,10 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import es.microforum.model.Empleado;
 import es.microforum.serviceapi.EmpleadoService;
 
-
-
-
-
 @Service("jpaEmpleadoService")
 @Repository
 @Transactional
@@ -36,28 +32,22 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Transactional(readOnly=true)
 	public List<Empleado> findAll() {
-		List<Empleado> empleados = em.createNamedQuery("Empleado.findAll", Empleado.class).getResultList();
-		return empleados;
+		return (List<Empleado>) repositorioEmpleado.findAll();
 	}
 
 
-	@Transactional(readOnly=true)
 	public Empleado findById(String id) {
-		//TypedQuery<Empleado> query = em.createNamedQuery("Empleado.findById", Empleado.class);
-		//query.setParameter("id", id);
-		//return query.getSingleResult();
 		return repositorioEmpleado.findOne(id);
 
 	}
 
-	public Empleado save(Empleado empleado) {
-		if (empleado.getDni() == null) { // Insert Contact
-			em.persist(empleado);
-		} else {                       // Update Contact
-			em.merge(empleado);
-		}
+	public Empleado insert(Empleado empleado) {
+		em.persist(empleado);
+		return empleado;
+	}
+	public Empleado update(Empleado empleado){
+		em.merge(empleado);
 		return empleado;
 	}
 

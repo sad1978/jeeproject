@@ -2,6 +2,8 @@ package es.microforum.integrationtest;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,13 +36,27 @@ public class EmpleadoServiceTest {
 
 		//EmpleadoService empleadoService = ctx.getBean("jpaEmpleadoService", EmpleadoService.class);
 		Empleado empleado = new Empleado();
-		empleado.setDni("dni5");
-		empleado.setNombre("nombre5");
-		empleadoService.save(empleado);
+		empleado.setDni("dni7");
+		empleado.setNombre("nombre7");
+		empleadoService.insert(empleado);
 		
 		empleado = empleadoService.findById("dni1");
 		System.out.println(empleado);
-		
+		List <Empleado> empleados = empleadoService.findAll(); 
+		for(Empleado empleadob: empleados){
+			System.out.println(empleadob);
+		}
+		empleado.setNombre("nomModificado");
+		empleadoService.update(empleado);
+		empleados = empleadoService.findAll(); 
+		for(Empleado empleadob: empleados){
+			System.out.println(empleadob);
+		}
+		empleadoService.delete(empleado);
+		empleados = empleadoService.findAll(); 
+		for(Empleado empleadob: empleados){
+			System.out.println(empleadob);
+		}
 	
 	}
 

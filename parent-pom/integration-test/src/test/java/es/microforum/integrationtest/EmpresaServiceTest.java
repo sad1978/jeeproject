@@ -124,10 +124,9 @@ public class EmpresaServiceTest {
 			empleado.setNombre("nombre1");
 			empleadoService.insert(empleado);
 		}
-		
 		Set<Empleado> empleados = new HashSet<Empleado>();
-		empleados.add(empleado);
 		empresa.setEmpleados(empleados);
+		empresaService.asignaEmpleadoAEmpresa(empresa, empleado);
 		empresaService.update(empresa);
 		empresa = empresaService.findById("nif1");
 		empleados = empresa.getEmpleados();

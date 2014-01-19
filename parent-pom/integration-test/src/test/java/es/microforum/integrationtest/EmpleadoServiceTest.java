@@ -26,38 +26,89 @@ public class EmpleadoServiceTest {
 
 	@Autowired
 	EmpleadoService empleadoService;
-	EmpresaService  empresaService;
-//cambios
-	@Test
-	public void test() {
-		//GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-		//ctx.load("classpath:spring-data-app-context.xml");
-		//ctx.refresh();
-
-		//EmpleadoService empleadoService = ctx.getBean("jpaEmpleadoService", EmpleadoService.class);
-		Empleado empleado = new Empleado();
-		empleado.setDni("dni7");
-		empleado.setNombre("nombre7");
-		empleadoService.insert(empleado);
-		
-		empleado = empleadoService.findById("dni1");
-		System.out.println(empleado);
-		List <Empleado> empleados = empleadoService.findAll(); 
-		for(Empleado empleadob: empleados){
-			System.out.println(empleadob);
-		}
-		empleado.setNombre("nomModificado");
-		empleadoService.update(empleado);
-		empleados = empleadoService.findAll(); 
-		for(Empleado empleadob: empleados){
-			System.out.println(empleadob);
-		}
-		empleadoService.delete(empleado);
-		empleados = empleadoService.findAll(); 
-		for(Empleado empleadob: empleados){
-			System.out.println(empleadob);
-		}
+	@Autowired
+	EmpresaService empresaService;
 	
+	@Test
+	public void findTest(){
+		Empleado empleado = empleadoService.findById("dni1");
+
+		if(empleado == null){
+			empleado=new Empleado();
+			empleado.setDni("dni1");
+			empleado.setNombre("nombre1");
+			empleadoService.insert(empleado);
+		}
+		Empleado empleado2 = empleadoService.findById("dni5");
+		if(empleado!=null){
+			empleadoService.delete(empleado2);
+		}
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado != null);
+		empleado = empleadoService.findById("dni5");
+		assertTrue(empleado == null);
+	}
+	@Test
+	public void findAllTest(){
+		List<Empleado> empleados = empleadoService.findAll();
+		Empleado empleado=new Empleado();
+		empleado.setDni("dni1");
+		empleado.setNombre("nombre1");
+		empleadoService.insert(empleado);
+		List<Empleado> empleados2 = empleadoService.findAll();	
+		assertTrue(empleados2.size() > empleados.size());
+	}
+	@Test
+	public void updateTest() {
+		Empleado empleado = empleadoService.findById("dni1");
+
+		if(empleado == null){
+			empleado=new Empleado();
+			empleado.setDni("dni1");
+			empleado.setNombre("nombre1");
+			empleadoService.insert(empleado);
+		}
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado.getNombre().equals("nombre1"));
+		empleado.setNombre("nombre2");
+		empleadoService.update(empleado);
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado.getNombre().equals("nombre2"));
+	
+	}
+	@Test
+	public void insertTest(){
+		Empleado empleado = new Empleado();
+		empleado.setDni("dni1");
+		empleado.setNombre("nombre1");
+		empleado.setCantidadHoras(8.0);
+		empleado.setDireccion("direccion1");
+		empleado.setEmpleadocol("cajero");
+		empleado.setSalarioAnual(12000.0);
+		empleado.setTipoEmpleado("Contrato laboral");
+		empleado.setValorHora(5.0);
+		Empresa empresa = empresaService.findById("nif2");
+		if(empresa != null)
+			empleado.setEmpresa(empresa);
+		empleadoService.insert(empleado);
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado != null);
+	}
+	
+	@Test
+	public void deleteTest(){
+		Empleado empleado = empleadoService.findById("dni1");
+		if(empleado == null){
+			empleado=new Empleado();
+			empleado.setDni("dni1");
+			empleado.setNombre("nombre1");
+			empleadoService.insert(empleado);
+		}
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado != null);
+		empleadoService.delete(empleado);
+		empleado = empleadoService.findById("dni1");
+		assertTrue(empleado == null);
 	}
 
 }

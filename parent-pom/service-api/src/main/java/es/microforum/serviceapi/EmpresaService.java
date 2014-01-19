@@ -1,27 +1,25 @@
-/**
- * Created on Oct 17, 2011
- */
 package es.microforum.serviceapi;
 
 import java.util.List;
 
+import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
 
 public interface EmpresaService {
 
-	// Busca todas las empresas
+	// Busca todos los contactos
 	public List<Empresa> findAll();
 	
-	// Busca una empresa por clave primaria
+	// Busca un contacto por clave primaria
 	public Empresa findById(String id);
 	
-	// Introduce una empresa
+	// Inserta un contacto
 	public Empresa insert(Empresa empresa);
 	
-	//Modifica una empresa
+	// Modifica un contacto
 	public Empresa update(Empresa empresa);
 	
-	// Delete a contact	
+	// Borra un contacto	
 	public void delete(Empresa empresa);
 	
 }

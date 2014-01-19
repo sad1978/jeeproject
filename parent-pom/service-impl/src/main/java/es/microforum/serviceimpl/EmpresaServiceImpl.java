@@ -1,6 +1,3 @@
-/**
- * Created on Oct 17, 2011
- */
 package es.microforum.serviceimpl;
 
 import java.util.List;
@@ -16,60 +13,51 @@ import javax.persistence.criteria.Root;
 
 
 
-//import org.apache.commons.logging.Log;
-//import org.apache.commons.logging.LogFactory;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
+import es.microforum.serviceapi.EmpleadoService;
 import es.microforum.serviceapi.EmpresaService;
 
-
-
-
-/**
- * @author Clarence
- *
- */
 @Service("jpaEmpresaService")
 @Repository
 @Transactional
 public class EmpresaServiceImpl implements EmpresaService {
-
+	@Autowired
+	private EmpresaRepository repositorioEmpresa;
 	
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Transactional(readOnly=true)
 	public List<Empresa> findAll() {
-		List<Empresa> empresas = em.createNamedQuery("Empresa.findAll", Empresa.class).getResultList();
-		return empresas;
+		return (List<Empresa>) repositorioEmpresa.findAll();
 	}
 
-	@Transactional(readOnly=true)
+
 	public Empresa findById(String id) {
-		TypedQuery<Empresa> query = em.createNamedQuery("Empresa.findById",Empresa.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
+		return repositorioEmpresa.findOne(id);
+
 	}
 
-	public Empresa save(Empresa empresa) {
-		if (empresa.getNif() == null) { // Insert Contact
-			em.persist(empresa);
-		} else {                       // Update Contact
-			em.merge(empresa);
-		}
+	public Empresa insert(Empresa empresa) {
+		em.persist(empresa);
 		return empresa;
 	}
 	public Empresa update(Empresa empresa){
-		return null;
+		em.merge(empresa);
+		return empresa;
 	}
-	public Empresa insert(Empresa empresa){
-		return null;
-	}
+
 	public void delete(Empresa empresa) {
 		Empresa mergedEmpresa = em.merge(empresa);
 		em.remove(mergedEmpresa);
 	}
+	
  }

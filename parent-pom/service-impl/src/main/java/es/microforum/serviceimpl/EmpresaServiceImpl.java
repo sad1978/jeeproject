@@ -1,6 +1,7 @@
 package es.microforum.serviceimpl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
 
 
 
@@ -59,5 +61,12 @@ public class EmpresaServiceImpl implements EmpresaService {
 		Empresa mergedEmpresa = em.merge(empresa);
 		em.remove(mergedEmpresa);
 	}
+	public void asignaEmpleadoAEmpresa(Empresa empresa, Empleado empleado){
+		empleado.setEmpresa(empresa);
+		Set<Empleado> empleados = empresa.getEmpleados();
+		empleados.add(empleado);
+		empresa.setEmpleados(empleados);
+	}
+
 	
  }

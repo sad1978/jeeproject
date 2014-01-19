@@ -7,19 +7,23 @@ import es.microforum.model.Empresa;
 
 public interface EmpresaService {
 
-	// Busca todos los contactos
+	// Busca todas las empresas
 	public List<Empresa> findAll();
 	
-	// Busca un contacto por clave primaria
+	// Busca una empresa por clave primaria
 	public Empresa findById(String id);
 	
-	// Inserta un contacto
+	// Inserta una empresa
 	public Empresa insert(Empresa empresa);
 	
-	// Modifica un contacto
+	// Modifica una empresa
 	public Empresa update(Empresa empresa);
 	
-	// Borra un contacto	
+	// Borra una empresa	
 	public void delete(Empresa empresa);
+	
+	//Asigna empleado existente a empresa existente
+	public void asignaEmpleadoAEmpresa(Empresa empresa, Empleado empleado);
+	
 	
 }

@@ -107,5 +107,32 @@ public class EmpresaServiceTest {
 		empresa = empresaService.findById("nif1");
 		assertTrue(empresa == null);
 	}
+	@Test
+	public void asignaEmpleadoAEmpresaTest(){
+		Empresa empresa = empresaService.findById("nif1");
+		if(empresa == null){
+			empresa=new Empresa();
+			empresa.setNif("nif1");
+			empresa.setNombre("nombre1");
+			empresaService.insert(empresa);
+		}
+		Empleado empleado = empleadoService.findById("dni1");
+
+		if(empleado == null){
+			empleado=new Empleado();
+			empleado.setDni("dni1");
+			empleado.setNombre("nombre1");
+			empleadoService.insert(empleado);
+		}
+		
+		Set<Empleado> empleados = new HashSet<Empleado>();
+		empleados.add(empleado);
+		empresa.setEmpleados(empleados);
+		empresaService.update(empresa);
+		empresa = empresaService.findById("nif1");
+		empleados = empresa.getEmpleados();
+		assertTrue(empresa.getNif().equals("nif1"));
+		assertTrue(empleados.contains(empleado));
+	}
 
 }

@@ -35,103 +35,77 @@ public class EmpresaServiceTest {
 
 	@Test
 	public void findTest(){
-		Empresa empresa = empresaService.findById("nif1");
+		Empresa empresa = empresaService.findById("nifprueba1");
 
 		if(empresa == null){
 			empresa=new Empresa();
-			empresa.setNif("nif1");
+			empresa.setNif("nifprueba1");
 			empresa.setNombre("nombre1");
 			empresaService.insert(empresa);
 		}
-		Empresa empresa2 = empresaService.findById("nif5");
+		Empresa empresa2 = empresaService.findById("nifprueba5");
 		if(empresa2!=null){
 			empresaService.delete(empresa2);
 		}
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa != null);
-		empresa = empresaService.findById("nif5");
+		empresa = empresaService.findById("nifprueba5");
 		assertTrue(empresa == null);
 	}
 	@Test
 	public void findAllTest(){
-		List<Empleado> empleados = empleadoService.findAll();
-		Empleado empleado=new Empleado();
-		empleado.setDni("dni1");
-		empleado.setNombre("nombre1");
-		empleadoService.insert(empleado);
-		List<Empleado> empleados2 = empleadoService.findAll();	
-		assertTrue(empleados2.size() > empleados.size());
+		List<Empresa> empresas = empresaService.findAll();
+		Empresa empresa=new Empresa();
+		empresa.setNif("nifprueba1");
+		empresa.setNombre("nombre1");
+		empresaService.insert(empresa);
+		List<Empresa> empresas2 = empresaService.findAll();	
+		assertTrue(empresas2.size() > empresas.size());
 	}
 	@Test
 	public void updateTest() {
-		Empresa empresa = empresaService.findById("nif1");
+		Empresa empresa = empresaService.findById("nifprueba1");
 
 		if(empresa == null){
 			empresa=new Empresa();
-			empresa.setNif("nif1");
+			empresa.setNif("nifprueba1");
 			empresa.setNombre("nombre1");
 			empresaService.insert(empresa);
 		}
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa.getNombre().equals("nombre1"));
 		empresa.setNombre("nombre2");
 		empresaService.update(empresa);
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa.getNombre().equals("nombre2"));
 	
 	}
 	@Test
 	public void insertTest(){
 		Empresa empresa = new Empresa();
-		empresa.setNif("nif1");
+		empresa.setNif("nifprueba1");
 		empresa.setNombre("nombre1");
 		empresa.setFechaInicioActividades(new Date());
 		empresa.setDireccionFiscal("dirFiscal1");
 		empresaService.insert(empresa);
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa != null);		
 	}
 	
 	@Test
 	public void deleteTest(){
-		Empresa empresa = empresaService.findById("nif1");
+		Empresa empresa = empresaService.findById("nifprueba1");
 		if(empresa == null){
 			empresa=new Empresa();
-			empresa.setNif("nif1");
+			empresa.setNif("nifprueba1");
 			empresa.setNombre("nombre1");
 			empresaService.insert(empresa);
 		}
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa != null);
 		empresaService.delete(empresa);
-		empresa = empresaService.findById("nif1");
+		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa == null);
-	}
-	@Test
-	public void asignaEmpleadoAEmpresaTest(){
-		Empresa empresa = empresaService.findById("nif1");
-		if(empresa == null){
-			empresa=new Empresa();
-			empresa.setNif("nif1");
-			empresa.setNombre("nombre1");
-			empresaService.insert(empresa);
-		}
-		Empleado empleado = empleadoService.findById("dni1");
-
-		if(empleado == null){
-			empleado=new Empleado();
-			empleado.setDni("dni1");
-			empleado.setNombre("nombre1");
-			empleadoService.insert(empleado);
-		}
-		Set<Empleado> empleados = new HashSet<Empleado>();
-		empresa.setEmpleados(empleados);
-		empresaService.asignaEmpleadoAEmpresa(empresa, empleado);
-		empresaService.update(empresa);
-		empresa = empresaService.findById("nif1");
-		empleados = empresa.getEmpleados();
-		assertTrue(empresa.getNif().equals("nif1"));
-		assertTrue(empleados.contains(empleado));
 	}
 
 }

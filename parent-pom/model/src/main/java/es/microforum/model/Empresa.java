@@ -94,7 +94,7 @@ public class Empresa implements java.io.Serializable {
 		this.fechaInicioActividades = fechaInicioActividades;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empresa")
 	public Set<Empleado> getEmpleados() {
 		return this.empleados;
 	}

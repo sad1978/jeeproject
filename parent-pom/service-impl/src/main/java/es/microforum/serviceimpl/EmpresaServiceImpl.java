@@ -18,7 +18,10 @@ import javax.persistence.criteria.Root;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +70,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 		empleados.add(empleado);
 		empresa.setEmpleados(empleados);
 	}
-
+	@Transactional(readOnly=true)	
+	public Page<Empresa> findAll(Pageable pageable){
+		return repositorioEmpresa.findAll(pageable);
+	}
 	
  }

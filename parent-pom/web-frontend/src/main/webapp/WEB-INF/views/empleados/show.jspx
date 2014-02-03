@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<spring:message code="label_contact_info" var="labelContactInfo" />
+	<spring:message code="label_contact_update" var="labelContactUpdate" />
+	<spring:message code="label_contact_delete" var="labelContactDelete" />
+	<spring:message code="label_empleado_dni" var="labelEmpleadoDNI" />
+	<spring:message code="label_empleado_nombre" var="labelEmpleadoNombre" />
+	<spring:message code="label_empleado_direccion" var="labelEmpleadoDireccion" />
+	<spring:message code="label_empleado_tipo" var="labelEmpleadoTipo" />
+	<spring:message code="label_empleado_col" var="labelEmpleadoCol" />
+	<spring:message code="label_empleado_salarioanual" var="labelEmpleadoSalarioAnual" />
+	<spring:message code="label_empleado_valorhora" var="labelEmpleadoValorHora" />
+	<spring:message code="label_empleado_cantidadhoras" var="labelEmpleadoCantidadHoras" />
+	<spring:message code="label_empleado_empresa" var="labelEmpleadoEmpresa" />	
+	<spring:message code="label_photo_upload" var="labelPhotoUpload" />	
+		
+
+	<spring:url value="/empleados" var="editContactUrl" />
+	<spring:url value="/upload" var="contactPhotoUrl" />
+
+	<h1>${labelContactInfo}</h1>
+
+	<div id="contactInfo">
+
+		<c:if test="${not empty message}">
+			<div id="message" class="${message.type}">${message.message}</div>
+		</c:if>
+	<c:if test="${empleado.dni!=null}">
+	    <img src="../images/${empleado.dni}"/>
+		<table >
+			<tr>
+				<td>${labelEmpleadoDNI}</td>
+				<td>${empleado.dni}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoNombre}</td>
+				<td>${empleado.nombre}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoDireccion}</td>
+				<td>${empleado.direccion}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoTipo}</td>
+				<td>${empleado.tipoEmpleado}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoCol}</td>
+				<td>${empleado.empleadocol}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoSalarioAnual}</td>
+				<td>${empleado.salarioAnual}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoValorHora}</td>
+				<td>${empleado.valorHora}</td>
+			</tr>
+			<tr>
+				<td>${labelEmpleadoCantidadHoras}</td>
+				<td>${empleado.cantidadHoras}</td>
+			</tr>
+			<tr>
+			<td>${labelEmpleadoEmpresa}</td>
+				<td><a href="../empresas/${empleado.empresa.getNif()}">${empleado.empresa.getNif()}</a></td>
+			</tr>
+
+		</table>
+
+	<a href="${editContactUrl}/${empleado.dni}?form">${labelContactUpdate}</a>&#160;&#160;&#160;
+	<a href="${editContactUrl}/${empleado.dni}?del">${labelContactDelete}</a>&#160;&#160;&#160;
+	<a href="${contactPhotoUrl}/${empleado.dni}">${labelPhotoUpload}</a>
+	</c:if>
+	</div>
+
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form" version="2.0">
+		<form:form modelAttribute="uploadItem" method="post"
+			enctype="multipart/form-data">
+			<fieldset>
+				<legend>Subir Foto</legend>
+
+				<p>
+					<form:label for="name" path="name">DNI</form:label>
+					<br />
+					<form:input path="name" readonly="true"/>
+				</p>
+
+				<p>
+					<form:label for="fileData" path="fileData">Fichero</form:label>
+					<br />
+					<form:input path="fileData" type="file" />
+				</p>
+				<label>La foto no debe sobrepasar los 50KB</label>
+				<p>
+					<input type="submit" />
+				</p>
+
+			</fieldset>
+		</form:form>
+</div>

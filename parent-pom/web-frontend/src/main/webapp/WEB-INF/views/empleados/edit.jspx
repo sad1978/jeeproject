@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+		
+	<spring:message code="label_contact_update" var="labelContactUpdate" />	
+	<spring:message code="label_contact_new" var="labelContactNew" />
+	<spring:message code="label_empleado_dni" var="labelEmpleadoDNI" />
+	<spring:message code="label_empleado_nombre" var="labelEmpleadoNombre" />
+	<spring:message code="label_empleado_direccion"	var="labelEmpleadoDireccion" />
+	<spring:message code="label_empleado_tipo" var="labelEmpleadoTipo" />
+	<spring:message code="label_empleado_col" var="labelEmpleadoCol" />
+	<spring:message code="label_empleado_salarioanual" var="labelEmpleadoSalarioAnual" />
+	<spring:message code="label_empleado_valorhora" var="labelEmpleadoValorHora" />
+	<spring:message code="label_empleado_cantidadhoras" var="labelEmpleadoCantidadHoras" />
+	<spring:message code="label_empleado_empresa" var="labelEmpleadoEmpresa" />
+	<spring:eval expression="empleado.dni == null ? labelContactNew:labelContactUpdate" var="formTitle" />
+
+	<h1>${formTitle}</h1>
+	<div id="contactUpdate">
+		<form:form modelAttribute="empleado" id="contactUpdateForm"
+			method="post">
+			<c:if test="${not empty message}">
+				<div id="message" class="${message.type}">${message.message}</div>
+			</c:if>
+			<form:label path="dni">
+            ${labelEmpleadoDNI} 
+        </form:label>
+			<c:choose>
+				<c:when test="${empleado.dni == null}">
+					<form:input path="dni"/>
+				</c:when>
+				<c:otherwise>
+					<form:input path="dni" readonly="true"/>
+				</c:otherwise>
+			</c:choose>
+
+			<div>
+				<form:errors path="dni" cssClass="error" />
+			</div>
+			<form:label path="nombre">
+            ${labelEmpleadoNombre}
+        </form:label>
+			<form:input path="nombre" />
+			<div>
+				<form:errors path="nombre" cssClass="error" />
+			</div>
+			<form:label path="direccion">
+            ${labelEmpleadoDireccion} 
+        </form:label>
+			<form:input path="direccion" />
+			<div>
+				<form:errors path="direccion" cssClass="error" />
+			</div>
+			<form:label path="tipoEmpleado">
+            ${labelEmpleadoTipo} 
+        </form:label>
+			<form:input path="tipoEmpleado" />
+			<div>
+				<form:errors path="tipoEmpleado" cssClass="error" />
+			</div>
+			<form:label path="empleadocol">
+            ${labelEmpleadoCol}
+        </form:label>
+			<form:input path="empleadocol" />
+			<div>
+				<form:errors path="empleadocol" cssClass="error" />
+			</div>
+			<form:label path="salarioAnual">
+            ${labelEmpleadoSalarioAnual} 
+        </form:label>
+			<form:input path="salarioAnual" />
+			<div>
+				<form:errors path="salarioAnual" cssClass="error" />
+			</div>
+			<form:label path="valorHora">
+            ${labelEmpleadoValorHora} 
+        </form:label>
+			<form:input path="valorHora" />
+			<div>
+				<form:errors path="valorHora" cssClass="error" />
+			</div>
+			<form:label path="cantidadHoras">
+            ${labelEmpleadoCantidadHoras} 
+        </form:label>
+			<form:input path="cantidadHoras" />
+			<div>
+				<form:errors path="cantidadHoras" cssClass="error" />
+			</div>
+			
+			<form:hidden path="version" />
+			<form:label path="cantidadHoras">
+            ${labelEmpleadoEmpresa} 
+            </form:label>			
+			<form:select path="empresa" items="${empresas}" itemLabel="nif" itemValue="nif"/>
+			<p/>
+			<button name="submit" type="submit"
+				class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+				<span class="ui-button-text">Save</span>
+			</button>
+			<button name="reset" type="reset"
+				class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+				<span class="ui-button-text">Reset</span>
+			</button>
+
+		</form:form>
+
+	</div>
+
+</div>

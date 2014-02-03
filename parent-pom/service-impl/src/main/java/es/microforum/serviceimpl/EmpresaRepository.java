@@ -5,7 +5,9 @@ package es.microforum.serviceimpl;
 
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
+import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
 
 
@@ -13,6 +15,6 @@ import es.microforum.model.Empresa;
  * @author Clarence
  *
  */
-public interface EmpresaRepository extends CrudRepository<Empresa, String> {	
+public interface EmpresaRepository extends PagingAndSortingRepository<Empresa, String> {	
 	
 }

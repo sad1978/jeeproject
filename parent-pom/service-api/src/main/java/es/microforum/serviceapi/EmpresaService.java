@@ -2,6 +2,9 @@ package es.microforum.serviceapi;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
 
@@ -25,5 +28,5 @@ public interface EmpresaService {
 	//Asigna empleado existente a empresa existente
 	public void asignaEmpleadoAEmpresa(Empresa empresa, Empleado empleado);
 	
-	
+	Page<Empresa> findAll(Pageable pageable);
 }

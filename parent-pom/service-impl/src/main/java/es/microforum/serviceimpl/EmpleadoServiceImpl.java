@@ -14,7 +14,10 @@ import javax.persistence.criteria.Root;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,29 +34,30 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	
 	@PersistenceContext
 	private EntityManager em;
-	
+	@Transactional(readOnly=true)	
 	public List<Empleado> findAll() {
 		return (List<Empleado>) repositorioEmpleado.findAll();
 	}
 
-
+	@Transactional(readOnly=true)
 	public Empleado findById(String id) {
 		return repositorioEmpleado.findOne(id);
 
 	}
 
 	public Empleado insert(Empleado empleado) {
-		em.persist(empleado);
-		return empleado;
+		return repositorioEmpleado.save(empleado);
 	}
 	public Empleado update(Empleado empleado){
-		em.merge(empleado);
-		return empleado;
+		return repositorioEmpleado.save(empleado);
 	}
-
+	
 	public void delete(Empleado empleado) {
 		Empleado mergedEmpleado = em.merge(empleado);
 		em.remove(mergedEmpleado);
 	}
-	
+	@Transactional(readOnly=true)	
+	public Page<Empleado> findAll(Pageable pageable){
+		return repositorioEmpleado.findAll(pageable);
+	}
  }

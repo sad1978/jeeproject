@@ -2,6 +2,9 @@ package es.microforum.serviceapi;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import es.microforum.model.Empleado;
 
 public interface EmpleadoService {
@@ -20,5 +23,6 @@ public interface EmpleadoService {
 	
 	// Borra un contacto	
 	public void delete(Empleado empleado);
+	Page<Empleado> findAll(Pageable pageable);
 	
 }

@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -119,6 +121,23 @@ public class EmpleadoServiceTest {
 		empleadoService.delete(empleado);
 		empleado = empleadoService.findById("dniprueba1");
 		assertTrue(empleado == null);
+	}
+	@Test
+	public void findAllPageable(){
+		Empleado empleado = new Empleado();
+		empleado.setDni("dniprueba1");
+		empleado.setVersion(0);
+		empleadoService.insert(empleado);
+		empleado=new Empleado();
+		empleado.setDni("dniprueba2");
+		empleadoService.insert(empleado);
+		empleado=new Empleado();
+		empleado.setDni("dniprueba3");
+		empleadoService.insert(empleado);
+		PageRequest pageRequest = null;
+		pageRequest = new PageRequest(0, 2);
+		Page<Empleado> empleados = empleadoService.findAll(pageRequest);
+		assertTrue(empleados.getSize() == 2);
 	}
 
 }

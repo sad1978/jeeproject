@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -106,6 +108,23 @@ public class EmpresaServiceTest {
 		empresaService.delete(empresa);
 		empresa = empresaService.findById("nifprueba1");
 		assertTrue(empresa == null);
+	}
+	@Test
+	public void findAllPageable(){
+		Empresa empresa = new Empresa();
+		empresa.setNif("nifprueba1");
+		empresa.setVersion(0);
+		empresaService.insert(empresa);
+		empresa=new Empresa();
+		empresa.setNif("nifprueba2");
+		empresaService.insert(empresa);
+		empresa=new Empresa();
+		empresa.setNif("nifprueba3");
+		empresaService.insert(empresa);
+		PageRequest pageRequest = null;
+		pageRequest = new PageRequest(0, 2);
+		Page<Empresa> empresas = empresaService.findAll(pageRequest);
+		assertTrue(empresas.getSize() == 2);
 	}
 
 }

@@ -2,23 +2,44 @@ package es.microforum.integrationtest;
 
 import static org.junit.Assert.*;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+
+
+
+
+
+
+
+
+
+import javax.sql.DataSource;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.hateoas.Resource;
+import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+
+import org.springframework.web.client.RestTemplate;
 
 import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
@@ -34,6 +55,10 @@ public class EmpresaServiceTest {
 	EmpleadoService empleadoService;
 	@Autowired
 	EmpresaService empresaService;
+	//@Autowired
+	//ApplicationContext context;
+
+
 
 	@Test
 	public void findTest(){
@@ -126,5 +151,6 @@ public class EmpresaServiceTest {
 		Page<Empresa> empresas = empresaService.findAll(pageRequest);
 		assertTrue(empresas.getSize() == 2);
 	}
+
 
 }

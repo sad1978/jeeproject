@@ -50,7 +50,8 @@
     <jpa:repositories base-package="es.microforum.serviceimpl"
                       entity-manager-factory-ref="emf"
                       transaction-manager-ref="transactionManager"/> 
-                      
+
+             
 <!--     <jpa:auditing auditor-aware-ref="auditorAwareBean"/> -->
     
 <!--     <bean id="auditorAwareBean" class="com.apress.prospring3.ch10.springjpa.auditor.AuditorAwareBean"/> -->

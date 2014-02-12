@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.microforum.model.Empleado;
 import es.microforum.serviceapi.SueldoService;
+import es.microforum.serviceimpl.EmpleadoRepository;
 @Service("jpaSueldoService")
 @Repository
 @Transactional
 public class SueldoServiceImpl implements SueldoService{
+	
 	@Autowired
 	private EmpleadoRepository repositorioEmpleado;
 	

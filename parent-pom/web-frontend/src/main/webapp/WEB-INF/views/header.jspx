@@ -1,9 +1,11 @@
 <div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:spring="http://www.springframework.org/tags" 
 	xmlns:sec="http://www.springframework.org/security/tags" 
-	version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+> 
+
 	<jsp:output omit-xml-declaration="yes" />
+
+	  <jsp:directive.page contentType="text/html;charset=UTF-8" />
 	
 	<spring:message code="header_text" var="headerText"/>
     <spring:message code="label_logout" var="labelLogout"/>
@@ -12,6 +14,7 @@
 
     <div id="appname">
         <h1>${headerText}</h1>
+        <input type="color" id="project_color" name="project_color" value="#ffffff" onchange="myFuncion();"/> 
     </div>
 
     <div id="userinfo">
@@ -19,7 +22,8 @@
             <sec:authentication property="principal.username" />
             <br/>
             <a href="${logoutUrl}">${labelLogout}</a>
-        </sec:authorize>                    
+        </sec:authorize> 
+            
     </div>  
 
 </div>

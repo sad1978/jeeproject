@@ -3,7 +3,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:form="http://www.springframework.org/tags/form"
-	xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0">
+	xmlns:joda="http://www.joda.org/joda/time/tags" >
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:message code="label_empresa_new" var="labelEmpresaNew" />
@@ -23,15 +23,6 @@
 	<spring:eval expression="empresa.nif == null ? labelEmpresaNew:labelEmpresaUpdate" var="formTitle" />
 	<spring:message code="date_format_pattern" var="dateFormatPattern" />
 
-	  <script type="text/javascript">
-    $(function(){ 
-        $('#fechaInicioActividades').datepicker({ 
-            dateFormat: 'yy-mm-dd',
-            changeYear: true
-        });
-        
-    });
-    </script> 
 	<h1>${formTitle}</h1>
 	<div id="contactUpdate">
 		<form:form modelAttribute="empresa" id="contactUpdateForm"
@@ -72,12 +63,14 @@
         <form:label path="fechaInicioActividades">
             ${labelEmpresaFecha}
         </form:label>
-		<joda:format value="${fecha}" pattern="${dateFormatPattern}" var="dateString"/>
-        <form:input path="fechaInicioActividades" value="${dateString}" id="fechaInicioActividades"/>    
+		<!-- <joda:format value="${fecha}" pattern="${dateFormatPattern}" var="dateString"/> -->
+        <form:input path="fechaInicioActividades" type="date"  value="${dateString}" id="fechaInicioActividades"/> 
+
+
         <div>
             <form:errors path="fechaInicioActividades" cssClass="error" />
         </div>        
-        <p/>
+        <p>&#160;</p>
         
 		<form:hidden path="version" />
 

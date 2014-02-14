@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- <?xml version="1.0" encoding="UTF-8" standalone="no"?> -->
 
-<div>
+<div xmlns:jsp="http://java.sun.com/JSP/Page">
+<jsp:output omit-xml-declaration="yes" />
 	<script type="text/javascript">
     $(function(){
         $("#tree").dynatree("getTree").reload();      

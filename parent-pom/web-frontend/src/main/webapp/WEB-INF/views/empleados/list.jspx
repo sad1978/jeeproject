@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	xmlns:spring="http://www.springframework.org/tags" >
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
@@ -79,7 +79,7 @@
 
 	<h2>${labelEmpleadoList}</h2>
 	<div id="criteria">
-		<button name="search" id="search" type="new"
+		<button name="search" id="search" type="submit" 
 			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 			<span class="ui-button-text">Search</span>
 		</button>
@@ -87,12 +87,12 @@
 	<div>
 		<table id="list">
 			<tr>
-				<td />
+				<td>&#160;</td>
 			</tr>
 		</table>
 	</div>
-	<div id="pager"></div>
-	<button name="new" id="new" type="search"
+	<div id="pager">&#160;</div>
+	<button name="new" id="new"  type="submit" 
 		class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
 		<span class="ui-button-text">New</span>
 	</button>

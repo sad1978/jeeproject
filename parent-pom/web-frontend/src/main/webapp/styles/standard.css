@@ -109,10 +109,6 @@ body {
 .quicklinks span {
 	float: right;
 }
-img {
-	height: 200px;
-	width: 200px;
-}
 table.navigation {
 	border: 0px;
 }
@@ -376,4 +372,12 @@ fieldset th {
 .flag {
 	height: 11px;
 	width: 16px;
+}
+img{
+	height:100px;
+	width:100px;
+}
+.imagen{
+	height:200px;
+	width: 200px;
 }
